@@ -4,7 +4,7 @@ var DM_PROJECT_VERSION = 'v1'; // Data Management
 var MD_PROJECT_VERSION = 'v2'; // Model Derivative
 
 module.exports = {
-    redirectUrl: process.env.CALLBACK_URL,
+    redirectUrl: process.env.ROOMEDIT3DV2_PROD_CALLBACK_URL,
 
     defaultBucketKey: "adamnagy-20160611",
 
