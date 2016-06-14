@@ -1,5 +1,6 @@
 'use strict';
 
+var pkg = require( './package.json' );
 var io = require('socket.io');
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -41,7 +42,7 @@ var server = app.listen(port,
     var a = server.address().port;
 
     console.log(
-      'Roomedit3dV2 server 0.0.1' // + pkg.version
+      'Roomedit3dV2 server ' + pkg.version
       + ' listening at port ' + a + '.'
     );
 
