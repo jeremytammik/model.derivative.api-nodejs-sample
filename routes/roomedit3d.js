@@ -1,12 +1,14 @@
 // roomedit3d/routes/api/roomedit3d.js
 
 var express = require('express');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 
 module.exports = function(io) {
 
   var router = express.Router();
 
-  router.post('/transform', function (req, res) {
+  router.post('/transform', jsonParser, function (req, res) {
     console.log(req.body);
 
     //req.body.externalId; // external id == Revit UniqueId
