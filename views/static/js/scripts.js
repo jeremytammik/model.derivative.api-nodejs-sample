@@ -28,8 +28,11 @@ $(document).ready(function () {
         'prod': ''
     };
     var urlSuffix = urlSuffixes[env];
-    $('head').append('<script src="https://developer' + urlSuffix + '.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>');
-    $('head').append('<link rel="stylesheet" type="text/css" href="https://developer' + urlSuffix + '.api.autodesk.com/viewingservice/v1/viewers/style.min.css">');
+//    $('head').append('<script src="https://developer' + urlSuffix + '.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>');
+//    $('head').append('<link rel="stylesheet" type="text/css" href="https://developer' + urlSuffix + '.api.autodesk.com/viewingservice/v1/viewers/style.min.css">');
+//
+//    $('head').append('<script src="js/extensions/Roomedit3dTranslationTool.js"></script>');
+//    $('head').append('<script src="js/roomedit3dapiclient.js"></script>');
 
     // Get the tokens
     var token = getToken();// get3LegToken();
@@ -118,6 +121,20 @@ $(document).ready(function () {
         MyVars.keepTrying = false;
         showProgress("Translation stopped", 'failed');
     });
+    
+    //Button events
+    var loadBtn = document.getElementById('loadBtn');
+
+    loadBtn.addEventListener("click", function(){
+      loadExtension(MyVars.viewer);
+    });
+
+    var unloadBtn = document.getElementById('unloadBtn');
+
+    unloadBtn.addEventListener("click", function(){
+      unloadExtension(MyVars.viewer);
+    });
+    
 });
 
 function base64encode(str) {
@@ -1127,4 +1144,27 @@ function showProgress(text, status) {
     }
 }
 
+// Load custom extension
 
+//var toolname = new Roomedit3dTranslationTool()
+
+function loadExtension(viewer) {
+
+  var options = {
+    roomedit3dApi : new Roomedit3dApiClient({
+      baseUrl : '/api/roomedit3d',
+      port : 8000
+    })
+  };
+
+  var res = viewer.loadExtension(
+    roomedit3d_toolname,
+    options);
+}
+
+// Unload custom extension
+
+function unloadExtension(viewer) {
+  var res = viewer.unloadExtension(
+    roomedit3d_toolname );
+}

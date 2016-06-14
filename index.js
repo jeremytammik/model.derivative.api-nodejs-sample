@@ -1,5 +1,6 @@
 'use strict';
 
+var io = require('socket.io');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -33,5 +34,30 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(port);
-console.log('App is listening at port ' + port);
+var roomedit3d = require('./routes/roomedit3d');
+
+var server = app.listen(port,
+  function() {
+    var a = server.address().port;
+
+    console.log(
+      'Roomedit3dV2 server 0.0.1' // + pkg.version
+      + ' listening at port ' + a + '.'
+    );
+
+    //var socketSvc = new SocketSvc(server);
+    //app.use('/api/roomedit3d', roomedit3d(socketSvc));
+
+    var io2 = io(server);
+
+    io2.on('connection', function(client){
+      console.log('a client connected to the roomedit3dv2 socket');
+    });
+
+    app.use('/api/roomedit3d', roomedit3d(io2));
+
+    //socket.on('connection', function (client) {
+    //  client.emit('roomedit3d', { hello: 'world' });
+    //});
+  }
+);

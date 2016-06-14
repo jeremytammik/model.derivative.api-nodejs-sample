@@ -16,6 +16,13 @@
     <!--<script src="https://developer-stg.api.autodesk.com/viewingservice/v1/viewers/viewer3D.js"></script>-->
 
     <link rel="stylesheet" href="/css/index.css"/>
+    
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css">
+
+    <script src="js/extensions/Roomedit3dTranslationTool.js"></script>
+    <script src="js/roomedit3dapiclient.js"></script>
+    
 </head>
 <body>
 <div class="container">
@@ -104,6 +111,8 @@
             </div>
 
             <div class="col-sm-5 forgeViewer">
+  <button id="loadBtn" style="position:absolute;z-index:100;color:green">Start Roomedit3d</button>
+  <button id="unloadBtn" style="position:absolute;z-index:100;left:10em;color:red">Stop Roomedit3d</button>
                 <div id="forgeViewer"></div>
             </div>
         </div>
