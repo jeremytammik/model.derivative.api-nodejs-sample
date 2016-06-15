@@ -36,6 +36,10 @@ That can potentially be used to implement a real-time round-trip BIM update:
 - Report the data back from the viewer to the web server via a REST API call
 - Broadcast the data from the web server to the C# .NET clients to update the BIM
 
+If you have installed and launched
+the [Roomedit3dApp Revit add-in](https://github.com/jeremytammik/Roomedit3dApp) in
+the same model and run its external command to subscribe to the broadcast events, you will see your own BIM being updated live by the element translations defined in the Forge viewer.
+
 For more information on the original sample, please refer to
 the [model derivative sample GitHub repo](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
 
