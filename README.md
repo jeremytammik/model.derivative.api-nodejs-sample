@@ -13,64 +13,50 @@ This sample is based on and an enhancement of the Forge [Model Derivative API sa
 It reuses that sample's functionality to:
 
 - Log in to an A360 account
-- Display the Data Management hierarchy of hubs, project
+- Display the Data Management hierarchy of hubs, projects, folder, items and versions
+- Upload new CAD files
+- Select an existing model file
+- Use the Model Derivative API to translate it for the viewer, retrieve its internal element structure, access element data and translate geometry to OBJ
+- Display the file in the viewer
 
+The original sample is designed for initial testing on multiple enviroments (DEV, STG and PROD).
 
-shows how you can use the **Model Derivative API** and what you can do with it. It was designed for initial testing on multiple enviroments (DEV, STG and PROD). In most cases, you'll use PRODUCTION keys from [Forge Platform](https://developer.autodesk.com).
+For the sake of simplicity, that flexibility has been disabled in this sample, which only works in the PRODUCTION envirnment.
 
-Also use [Autodesk Viewer](https://developer.autodesk.com/en/docs/viewer/v2/overview/) for showing models. Set of consumer key and secret are required (at least one environment), please visit Forge for more information.
+In addition to the original model derivative sample functionality listed above, roomedit3dv2 implements the `Roomedit3dTranslationTool` viewer extension to modify the location of a selected element in the viewer and broadcast that modification data to socket.io clients.
+
+That can potentially be used to implement a real-time round-trip BIM update:
+
+- Start `Roomedit3dTranslationTool`
+- Select an element
+- Transform its location
+- Report the data back from the viewer to the web server via a REST API call
+- Broadcast the data from the web server to the C# .NET clients to update the BIM
+
+For more information on the original sample, please refer to
+the [model derivative sample GitHub repo](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
+
+For more information on the viewer extension and real-time round-trip BIM update functionality, look at the
+original [roomedit3d](https://github.com/jeremytammik/roomedit3d) implementation.
+
 
 ## Live demo
 
-The sample is also available online at [https://modelderivative.herokuapp.com](https://modelderivative.herokuapp.com)
+This sample is available, up and running, and can be tested online at [https://roomedit3dv2.herokuapp.com](https://roomedit3dv2.herokuapp.com).
 
-## Setup
 
-1. Create a new application on [https://developer.autodesk.com](https://developer.autodesk.com) with "**CallBack URL**" set to "http://dev.example.com" and make a note of the "**Client ID**" and "**Client Secret**" keys of your application - you'll need them later
+## Authors
 
-2. You need to have **Node.js** installed.
-Just go to this address, download it and install it: [https://nodejs.org/en/](https://nodejs.org/en/)
+- [Adam Nagy](http://adndevblog.typepad.com/cloud_and_mobile/adam-nagy.html), Forge Platform Partner Development
+- Jeremy Tammik,
+[The Building Coder](http://thebuildingcoder.typepad.com) and
+[The 3D Web Coder](http://the3dwebcoder.typepad.com),
+[ADN](http://www.autodesk.com/adn)
+[Open](http://www.autodesk.com/adnopen),
+[Autodesk Inc.](http://www.autodesk.com)
 
-3. You can download this sample multiple ways. Once you have it on your computer open terminal and just go to the folder in which the source code is, then run `npm install` - this will download additional components that the sample project needs
-More info on how to do it: [https://docs.npmjs.com/cli/install](https://docs.npmjs.com/cli/install)
-
-4. Add this line in your computer's `/etc/hosts` file: `127.0.0.1	dev.example.com`
-Here is some info on how to modify your "hosts" file: [https://support.rackspace.com/how-to/modify-your-hosts-file/](https://support.rackspace.com/how-to/modify-your-hosts-file/)
-
-5. Set the Consumer Key, Consumer Secret keys and the Calllback URL of your app for the project. You could do it in multiple ways, but two of them are:
-  a. Set the `consumerKey` and `consumerSecret` values in the `config-<env>.js` file that corresponds to the environment (PROD/STG/DEV) that you are testing in, plus set the `redirectUrl` in the config.js file
-  b. Set the `CALLBACK_URL`, `PROD_CONSUMERKEY` and `PROD_CONSUMERSECRET` environment variables. You could do that e.g. by setting them when running the server app from the terminal like this:
-```
-PROD_CONSUMERKEY=<your cosumer key> PROD_CONSUMERSECRET=<your consumer secret key>
-CALLBACK_URL='http://dev.example.com:8000/api/autodesk/callback' node index.js
-```
-
-6. Now you can run the app by executing the following in the terminal
-`node index.js`
-
-7. To test the app just open in the browser the following URL [http://dev.example.com:8000](http://dev.example.com:8000)
-
-## Usage
-
-**You need to have an A360 account on the appropriate server (PROD, STG or DEV) - go to [https://myhub.autodesk360.com/](https://myhub.autodesk360.com/) to make sure you have a registered account before trying to use the sample**
-
-1. Click the "SIGN IN" button and provide your A360 credentials
-2. Once the hubs and projects are shown in the browser tree on the left, drill down into the content to find a file you are interested in and select its version (the item with a clock icon)
-3. The selected file's content hierarchy will appear in the middle browser tree - and it will also be shown in the viewer on the right
-4. You can click on any model part and that will trigger the translation of it to an OBJ file
-5. When you clicked an item, its name in the tree will change based on the translation progress. You have to keep clicking to get an update on the translation status. If the translation is finished by the time you click the item again, then the OBJ file will get downloaded to your computer
-
-You can also upload files to the web app's own bucket storage to use the **Model Derivative API** on them, just click the `Upload file` button. In case of uploading composite designs which consist of multiple components like an **Inventor** assembly and its parts, then the **zip** file's name needs to be the following: `<root design file's name'>.zip` - e.g. `scissors.iam.zip`
-
-Here is a video showing it in action: [http://www.youtube.com/watch?v=0o7o7NA69qk](http://www.youtube.com/watch?v=0o7o7NA69qk)
 
 ## License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 Please see the [LICENSE](LICENSE) file for full details.
-
-
-## Written by
-
-Adam Nagy and Shiya Luo (Forge Partner Development)<br />
-http://forge.autodesk.com<br />
