@@ -1,4 +1,4 @@
-# Workflow Sample for Model Derivative Service APIs
+# Roomedit3dV2
 
 [![Node.js](https://img.shields.io/badge/Node.js-6.2.0-blue.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-3.8.9-blue.svg)](https://www.npmjs.com/)
@@ -8,37 +8,45 @@
 
 ## Description
 
-This sample shows how you can use the **Model Derivative API** and what you can do with it. It was designed for initial testing on multiple enviroments (DEV, STG and PROD). In most cases, you'll use PRODUCTION keys from [Forge Platform](https://developer.autodesk.com).
+This sample is based on and an enhancement of the Forge [Model Derivative API sample](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
+
+It reuses that sample's functionality to:
+
+- Log in to an A360 account
+- Display the Data Management hierarchy of hubs, project
+
+
+shows how you can use the **Model Derivative API** and what you can do with it. It was designed for initial testing on multiple enviroments (DEV, STG and PROD). In most cases, you'll use PRODUCTION keys from [Forge Platform](https://developer.autodesk.com).
 
 Also use [Autodesk Viewer](https://developer.autodesk.com/en/docs/viewer/v2/overview/) for showing models. Set of consumer key and secret are required (at least one environment), please visit Forge for more information.
 
 ## Live demo
 
-The sample is also available online at [https://modelderivative.herokuapp.com](https://modelderivative.herokuapp.com) 
+The sample is also available online at [https://modelderivative.herokuapp.com](https://modelderivative.herokuapp.com)
 
 ## Setup
 
 1. Create a new application on [https://developer.autodesk.com](https://developer.autodesk.com) with "**CallBack URL**" set to "http://dev.example.com" and make a note of the "**Client ID**" and "**Client Secret**" keys of your application - you'll need them later
 
-2. You need to have **Node.js** installed.  
-Just go to this address, download it and install it: [https://nodejs.org/en/](https://nodejs.org/en/)  
+2. You need to have **Node.js** installed.
+Just go to this address, download it and install it: [https://nodejs.org/en/](https://nodejs.org/en/)
 
-3. You can download this sample multiple ways. Once you have it on your computer open terminal and just go to the folder in which the source code is, then run `npm install` - this will download additional components that the sample project needs 
+3. You can download this sample multiple ways. Once you have it on your computer open terminal and just go to the folder in which the source code is, then run `npm install` - this will download additional components that the sample project needs
 More info on how to do it: [https://docs.npmjs.com/cli/install](https://docs.npmjs.com/cli/install)
 
-4. Add this line in your computer's `/etc/hosts` file: `127.0.0.1	dev.example.com`  
+4. Add this line in your computer's `/etc/hosts` file: `127.0.0.1	dev.example.com`
 Here is some info on how to modify your "hosts" file: [https://support.rackspace.com/how-to/modify-your-hosts-file/](https://support.rackspace.com/how-to/modify-your-hosts-file/)
 
-5. Set the Consumer Key, Consumer Secret keys and the Calllback URL of your app for the project. You could do it in multiple ways, but two of them are:  
-  a. Set the `consumerKey` and `consumerSecret` values in the `config-<env>.js` file that corresponds to the environment (PROD/STG/DEV) that you are testing in, plus set the `redirectUrl` in the config.js file  
-  b. Set the `CALLBACK_URL`, `PROD_CONSUMERKEY` and `PROD_CONSUMERSECRET` environment variables. You could do that e.g. by setting them when running the server app from the terminal like this:  
+5. Set the Consumer Key, Consumer Secret keys and the Calllback URL of your app for the project. You could do it in multiple ways, but two of them are:
+  a. Set the `consumerKey` and `consumerSecret` values in the `config-<env>.js` file that corresponds to the environment (PROD/STG/DEV) that you are testing in, plus set the `redirectUrl` in the config.js file
+  b. Set the `CALLBACK_URL`, `PROD_CONSUMERKEY` and `PROD_CONSUMERSECRET` environment variables. You could do that e.g. by setting them when running the server app from the terminal like this:
 ```
 PROD_CONSUMERKEY=<your cosumer key> PROD_CONSUMERSECRET=<your consumer secret key>
 CALLBACK_URL='http://dev.example.com:8000/api/autodesk/callback' node index.js
-```  
+```
 
-6. Now you can run the app by executing the following in the terminal  
-`node index.js`   
+6. Now you can run the app by executing the following in the terminal
+`node index.js`
 
 7. To test the app just open in the browser the following URL [http://dev.example.com:8000](http://dev.example.com:8000)
 
@@ -52,7 +60,7 @@ CALLBACK_URL='http://dev.example.com:8000/api/autodesk/callback' node index.js
 4. You can click on any model part and that will trigger the translation of it to an OBJ file
 5. When you clicked an item, its name in the tree will change based on the translation progress. You have to keep clicking to get an update on the translation status. If the translation is finished by the time you click the item again, then the OBJ file will get downloaded to your computer
 
-You can also upload files to the web app's own bucket storage to use the **Model Derivative API** on them, just click the `Upload file` button. In case of uploading composite designs which consist of multiple components like an **Inventor** assembly and its parts, then the **zip** file's name needs to be the following: `<root design file's name'>.zip` - e.g. `scissors.iam.zip`  
+You can also upload files to the web app's own bucket storage to use the **Model Derivative API** on them, just click the `Upload file` button. In case of uploading composite designs which consist of multiple components like an **Inventor** assembly and its parts, then the **zip** file's name needs to be the following: `<root design file's name'>.zip` - e.g. `scissors.iam.zip`
 
 Here is a video showing it in action: [http://www.youtube.com/watch?v=0o7o7NA69qk](http://www.youtube.com/watch?v=0o7o7NA69qk)
 
