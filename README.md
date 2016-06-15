@@ -6,22 +6,25 @@
 ![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
+Forge real-time round-trip BIM editor, consisting of a node.js web server and client-side viewer extension.
+
 ## Description
 
-This sample is based on and an enhancement of the Forge [Model Derivative API sample](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
+This sample is based on and an enhancement of the
+Forge [Model Derivative API sample](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
 
-It reuses that sample's functionality to:
+That sample implements the following functionality:
 
 - Log in to an A360 account
 - Display the Data Management hierarchy of hubs, projects, folder, items and versions
 - Upload new CAD files
-- Select an existing model file
+- Select an existing CAD file
 - Use the Model Derivative API to translate it for the viewer, retrieve its internal element structure, access element data and translate geometry to OBJ
 - Display the file in the viewer
 
 The original sample is designed for initial testing on multiple enviroments (DEV, STG and PROD).
 
-For the sake of simplicity, that flexibility has been disabled in this sample, which only works in the PRODUCTION envirnment.
+For the sake of simplicity, that flexibility has been disabled in roomedit3dv2, which only works in the PRODUCTION envirnment.
 
 In addition to the original model derivative sample functionality listed above, roomedit3dv2 implements the `Roomedit3dTranslationTool` viewer extension to modify the location of a selected element in the viewer and broadcast that modification data to socket.io clients.
 
@@ -37,7 +40,8 @@ For more information on the original sample, please refer to
 the [model derivative sample GitHub repo](https://github.com/Developer-Autodesk/model.derivative.api-nodejs-sample).
 
 For more information on the viewer extension and real-time round-trip BIM update functionality, look at the
-original [roomedit3d](https://github.com/jeremytammik/roomedit3d) implementation.
+initial [roomedit3d](https://github.com/jeremytammik/roomedit3d) implementation
+not using the full three-legged Forge authentication to access third-party CAD data
 
 
 ## Live demo
